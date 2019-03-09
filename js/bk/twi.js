@@ -1,13 +1,16 @@
+/**
+ * @name Twitter
+ *
+ * @desc Logs into Twitter. Provide your username and password as environment variables when running the script, i.e:
+ * `TWITTER_USER=myuser TWITTER_PWD=mypassword node twitter.js`
+ *
+ */
+
 const puppeteer = require('puppeteer');
 const screenshot = 'twitter.png';
-require('dotenv').load();
-
-// process.env.TWITTER_USER="minorhash"
-// process.env.TWITTER_PWD="hash2010"
 
 (async () => {
-const browser = await puppeteer.launch({args: ['--no-sandbox',"headless:false"]} );
-  //const browser = await puppeteer.launch({ headless: false })
+  const browser = await puppeteer.launch({ headless: false })
   const page = await browser.newPage()
   await page.setViewport({ width: 1280, height: 800 })
 
@@ -22,6 +25,6 @@ const browser = await puppeteer.launch({args: ['--no-sandbox',"headless:false"]}
   await navigationPromise
 
   await page.waitForSelector('#timeline')
-  await page.screenshot({ path: "img/twi.png"})
+  await page.screenshot({ path: screenshot })
   await browser.close()
 })()
