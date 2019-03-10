@@ -52,7 +52,7 @@ console.log(pages[0].url())
 //
 //const hrefs = await page.$$eval('a', a => a.href);
 const hrefs=await pages[0].evaluate(()=>{
-    const anchors=document.querySelectorAll("a")
+const anchors=document.querySelectorAll("a")
 return [].map.call(anchors, a => a.href);
 })
 console.log(hrefs)

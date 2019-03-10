@@ -13,11 +13,25 @@ await page.goto(url);
 console.log(page.url())
 console.log("goto")
 
+// const gal= await page.$(".gallery")
+// const tx= await page.evaluate(gal=> gal.textContent, gal);
+// console.log(tx)
+
 await page.waitForSelector("input[name=q]")
 await page.focus("input[name=q]")
-await page.type("input[name=q]",hint)
+await page.type("input[name=q]",key.key)
+await page.click("button[type=submit]")
+console.log("cli")
+
+await page.screenshot({type:"jpeg",quality:100,path: 'img/'+"hen"+'.jpg',fullPage:true});
+
+    await page.waitForSelector("a[href=/g265221/]")
+await page.click("a[href=/g265221/]")
 
 await page.screenshot({type:"jpeg",quality:100,path: 'img/'+key.key+'.jpg',fullPage:true});
+
+console.log(page.url())
+
 
 await browser.close();
 
