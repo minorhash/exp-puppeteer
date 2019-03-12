@@ -1,6 +1,5 @@
-const key="mov"
-const key2="inp"
-//const key=require ("./key")
+const img="mov"
+const key=require ("../son/key")
 const puppeteer = require('puppeteer');
 
 async function main() {
@@ -37,28 +36,28 @@ await frame[1].click('input[name=CMD_SEARCH]');
 const url2="http://www2.jasrac.or.jp/eJwid/main.jsp?trxID=A00401-2"
 const url3="http://www2.jasrac.or.jp/eJwid/main.jsp?trxID=A00401-3"
 const pages=await browser.pages()
-// console.log(pages.length)
-// console.log(pages[0].url())
 await pages[0].goto(url3);
-// console.log(pages[0].url())
-// console.log(pages[1].url())
 
 const fra2=pages[0].frames();
-// console.log(fra2.length)
 
-const fra3 = await page.frames().find(f => f.name() === 'frame3');
-// console.log(fra3.url())
-
+ const fra3 = await page.frames().find(f => f.name() === 'frame3');
 
 // const val=await fra3.evaluate(()=>{
 // const arr=Array.from(document.querySelectorAll("td"))
 // return arr.map(el => el.innerText);
 // })
 
-//console.dir(val, {'maxArrayLength': null} );
+// console.dir(val, {'maxArrayLength': null} );
+// const son1=JSON.stringify(val)
+// const fs = require('fs');
 
+// fs.writeFile('./son/1.json', son1, function (err) {
+//   if (err) throw err;
+//   console.log('Saved!');
+// });
 
-const hand= await fra3.$x("//a[contains(text(), '4')]");
+for (var i=2;i<5;i++){
+const hand= await fra3.$x("//a[contains(text(), "+i+")]");
 
 if (hand.length > 0) {
 await hand[0].click();
@@ -66,15 +65,22 @@ await hand[0].click();
 throw new Error("Link not found");
 }
 
-await fra3.waitFor(1500);
+await fra3.waitFor(2500);
 const val=await fra3.evaluate(()=>{
 const arr=Array.from(document.querySelectorAll("td"))
 return arr.map(el => el.innerText);
 })
 
 console.dir(val, {'maxArrayLength': null} );
+const son1=JSON.stringify(val)
+const fs = require('fs');
+fs.writeFile('./son/'+i+'.json', son1, function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+});
+}
 
-await page.screenshot({type:"jpeg",quality:100,path: 'img/'+"4"+'.jpg',fullPage:true});
+await page.screenshot({type:"jpeg",quality:100,path: 'img/'+img+'.jpg',fullPage:true});
 
 await browser.close();
 

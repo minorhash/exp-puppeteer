@@ -3,6 +3,6 @@ var arr=require("../htm/arr.js")
 
 //console.log(arr)
 
-var all=db.selAll()
+var all=db.allSong()
 console.log(all)
 

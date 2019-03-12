@@ -1,6 +1,6 @@
-const key="mov"
-const key2="inp"
-//const key=require ("./key")
+// const key="mov"
+// const key2="inp"
+const key=require ("../son/key")
 const puppeteer = require('puppeteer');
 
 async function main() {
@@ -32,10 +32,9 @@ console.log(frame[i].name())
 }
 console.log(frame[1].name())
 
-const hint="東京ムービー企画部"
 await frame[1].waitForSelector("input[name=IN_KEN_NAME1]")
 await frame[1].focus("input[name=IN_KEN_NAME1]")
-await frame[1].type("input[name=IN_KEN_NAME1]",hint)
+await frame[1].type("input[name=IN_KEN_NAME1]",key.key)
 
 await frame[1].click('input[name=CMD_SEARCH]');
 
@@ -57,7 +56,7 @@ return [].map.call(anchors, a => a.href);
 })
 console.log(hrefs)
 
-await page.screenshot({type:"jpeg",quality:100,path: 'img/'+key+'.jpg',fullPage:true});
+await page.screenshot({type:"jpeg",quality:100,path: 'img/'+"tyo"+'.jpg',fullPage:true});
 
 await browser.close();
 
