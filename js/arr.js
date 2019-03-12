@@ -59,7 +59,7 @@ const val=await fra3.evaluate(()=>{
 const arr=Array.from(document.querySelectorAll("td"))
 return arr.map(el => el.innerText);
 })
-console.dir( val, {'maxArrayLength': null} );
+console.dir(val, {'maxArrayLength': null} );
 
 // const val2=val.slice(0,5)
 

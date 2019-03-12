@@ -10,6 +10,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "better-sqlite3": "^5.4.0",
+    "dblo": "^1.0.10",
     "dotenv": "^6.2.0",
     "puppeteer": "^1.10.0"
   }
