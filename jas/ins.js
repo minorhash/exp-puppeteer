@@ -1,11 +1,15 @@
 var db=require("songdb")
-var arr=require("../htm/arr.js")
+var arr=[]
 
+for(var i=1;i<5;i++){
+arr[i]=require("../htm/arr"+i+".js")
+var len=[]
+console.log("=====")
+console.log(arr[i].length)
 
-for(var i=10;i<50;i++){
-var num=i*6
-console.log(num)
-db.insSong(arr[num],arr[num+1],arr[num+2],arr[num+3],arr[num+4],arr[num+5])
-
+ for(var j=0;j<arr[i].length/6;j++){
+ var num=j*6
+ console.log(num)
+db.insSong(arr[i][num],arr[i][num+1],arr[i][num+2],arr[i][num+3],arr[i][num+4],arr[i][num+5])
 }
-
+}
