@@ -41,23 +41,40 @@ await frame[1].click('input[name=CMD_SEARCH]');
 
 console.log("cli")
 
+const url2="http://www2.jasrac.or.jp/eJwid/main.jsp?trxID=A00401-2"
 const url3="http://www2.jasrac.or.jp/eJwid/main.jsp?trxID=A00401-3"
 const pages=await browser.pages()
 console.log(pages.length)
 console.log(pages[0].url())
 await pages[0].goto(url3);
 console.log(pages[0].url())
+//console.log(pages[1].url())
 
-//await pages[0].waitForSelector("a")
-//
+const fra2=pages[0].frames();
+console.log(fra2.length)
+
+const fra3 = await page.frames().find(f => f.name() === 'frame3');
+console.log(fra3.url())
+const body=await fra3.$("body")
+
 //const hrefs = await page.$$eval('a', a => a.href);
-const hrefs=await pages[0].evaluate(()=>{
-const anchors=document.querySelectorAll("a")
-return [].map.call(anchors, a => a.href);
-})
-console.log(hrefs)
 
-await page.screenshot({type:"jpeg",quality:100,path: 'img/'+key+'.jpg',fullPage:true});
+await fra3.waitFor("a")
+ const eval=await fra3.evaluate(()=>{
+ const tds=Array.from(document.querySelectorAll("table tr td"))
+ return tds.map(td => td.innerHTML);
+ })
+console.log(eval)
+
+//await fra3.click("a[href="+url3+"]");
+
+// const dat = await fra3.$$eval('table tr td', tds => tds.map((td) => {
+// return td.innerHTML;
+// }));
+// console.log(dat)
+
+
+await page.screenshot({type:"jpeg",quality:100,path: 'img/'+"tyo"+'.jpg',fullPage:true});
 
 await browser.close();
 
