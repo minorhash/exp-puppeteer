@@ -1,9 +1,7 @@
-// const key="mov"
-// const key2="inp"
-const key=require ("../son/key")
-const puppeteer = require('puppeteer');
+// const key="mov" // const key2="inp" const key=require ("../son/key") const puppeteer = require('puppeteer');
 
 async function main() {
+const api=new PrivateApi(conf);
 const browser = await puppeteer.launch({args: ['--no-sandbox']} );
 const page = await browser.newPage();
     const url="http://www2.jasrac.or.jp/eJwid"

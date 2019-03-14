@@ -13,8 +13,9 @@ await page.goto(url);
 // console.log(page.url())
 // console.log("goto")
 
-const inp= await page.$('input[name=input]');
-await inp.click();
+await page.waitForSelector('input[name=input]');
+await page.focus('input[name=input]');
+await page.click('input[name=input]');
 
 await page.waitForNavigation({timeout: 60000, waitUntil: "domcontentloaded"});
 // console.log("waited for nav")
@@ -44,7 +45,7 @@ const fra2=pages[0].frames();
 
  const fra3 = await page.frames().find(f => f.name() === 'frame3');
 
-for (var i=1;i<89;i++){
+for (var i=1;i<10;i++){
 const hand= await fra3.$x("//a[contains(text(), "+i+")]");
 
 if (hand.length > 0) {
@@ -62,7 +63,7 @@ return arr.map(el => el.innerText);
 console.dir(val, {'maxArrayLength': null} );
 const son1=JSON.stringify(val)
 const fs = require('fs');
-fs.writeFile('./son/'+i+'.json', son1, function (err) {
+fs.writeFile('./tms/'+i+'.json', son1, function (err) {
 if (err) throw err;
 console.log('Saved!');
 });
